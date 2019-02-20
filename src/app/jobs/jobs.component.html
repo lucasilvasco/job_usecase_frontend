@@ -1,0 +1,16 @@
+<section class="content-header">
+    <h1>
+      Todos os Jobs
+    </h1>
+  </section>
+  
+  
+  <section class="content">
+  
+    <div class="row">
+          <div *ngFor="let job of jobs" class="col-sm-4 col-xs-12">
+                <app-job [job]="job"
+                          (removeJob)="removeJob($event)"></app-job>
+          </div>
+    </div>
+  </section>

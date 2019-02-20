@@ -1,0 +1,28 @@
+<div class="box">
+    <div class="box-header with-border text-center">
+      <h3 class="box-title"><b>{{job.name}}</b></h3>
+      <div class="box-tools pull-right">
+
+        <a class="btn btn-sm danger"><i class="fa fa-edit"></i></a>
+        <a (click)="emitRemoveJob(job.id)"class="btn btn-sm danger"><i class="fa fa-remove"></i></a>
+      </div>
+    </div>
+    <div class="box-body">
+      <b>Status: </b>
+        <span *ngIf="job.active"class="label label-success">Ativo</span>
+        <span *ngIf="!job.active"class="label label-danger">Inativo</span>
+    </div>
+    <div *ngIf="job.parentJob" class="box-body">
+      <b>Dependencia: </b>{{job.parentJob.name}}
+    </div>
+    <div *ngIf="!job.parentJob" class="box-body">
+        <b>Dependencia: </b>Não há dependências.
+      </div>
+      <h4 class="box-header with-border"><b>Tasks</b></h4>
+    <div *ngFor="let task of job.tasks" class="box-body">
+      <p><b>Nome: </b>{{task.name}}</p>
+      <p><b>Peso: </b>{{task.weight}}</p>
+      <p><b>Completo: </b>{{task.completed}}</p>
+      <p><b>Criado em: </b>{{task.createdAt}}</p>
+    </div>
+  </div>
