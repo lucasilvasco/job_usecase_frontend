@@ -1,7 +1,7 @@
  <!--INICIO DO CONTEUDO-->
  <section class="content-header">
   </section>
-  
+
   <section class="content">
     <section class="invoice">
           <form [formGroup]="jobForm" novalidate>
@@ -11,27 +11,27 @@
                    Job
                 </h2>
               </div>
-            </div>                
+            </div>
             <div class="row">
-              
-  
+
+
               <div class="col-sm-6 col-xs-12">
                   <app-input errorMessage="Campo obrigatório e com minimo de 5 caracteres" label="Nome">
-                    <input class="form-control" formControlName="name" placeholder="Nome" autocomplete="off">        
+                    <input class="form-control" formControlName="name" placeholder="Nome" autocomplete="off">
                   </app-input>
                 </div>
                 <div class="col-sm-3 col-xs-6">
                     <b class="col-sm-3 col-xs-6">Status: </b>
                     <div class="form-group col-sm-9 col-xs-6">
-                        <app-radio [options]="active" formControlName="active"></app-radio>   
+                        <app-radio [options]="active" formControlName="active"></app-radio>
                     </div>
                 </div>
-                <div class="col-sm-3 col-xs-6">                
+                <div class="col-sm-3 col-xs-6">
                     <b>Dependencia: </b>
                   <select id="parentJob" formControlName="parentJob">
                       <option *ngFor="let job of jobsDependence" [ngValue]="{'id': job.id}">{{ job.name }}</option>
                   </select>
-  
+
                 </div>
             </div>
             <div class="col-xs-12">
@@ -48,37 +48,36 @@
                       <div [formGroupName]="i">
                           <div class="col-sm-6 col-xs-12">
                             <app-input errorMessage="Campo obrigatório e com minimo de 5 caracteres" label="Nome">
-                              <input class="form-control" formControlName="name" placeholder="Nome" autocomplete="off">        
+                              <input class="form-control" formControlName="name" placeholder="Nome" autocomplete="off">
                             </app-input>
                           </div>
                           <div class="col-sm-3 col-xs-12">
                             <app-input errorMessage="Campo obrigatório, apenas numeros." label="Nome">
-                              <input class="form-control" formControlName="weight" placeholder="Peso" autocomplete="off">        
+                              <input class="form-control" formControlName="weight" placeholder="Peso" autocomplete="off">
                             </app-input>
                           </div>
                             <div class="col-sm-3 col-xs-6">
-                            <b class="col-sm-3 col-xs-6">Status: </b>
-                            <div class="form-group col-sm-9 col-xs-6">
-                                <app-radio [options]="completed" formControlName="completed"></app-radio>   
+                            <b class="col-sm-4 col-xs-6">Completo: </b>
+                            <div class="form-group col-sm-8 col-xs-6">
+                                <app-radio [options]="completed" formControlName="completed"></app-radio>
                             </div>
                         </div>
                     </div>
                   </div>
                 </div>
             </div>
-  
+
           </form>
-  
+
           <div class="row">
             <div class="col-xs-12">
               <button (click)="updateJob(jobForm.value)"
                       class="btn btn-success pull-right"
                       [disabled]="!jobForm.valid">
-                      Criar
+                      Atualizar
               </button>
             </div>
           </div>
-  
+
       </section>
   </section>
-  

@@ -18,9 +18,9 @@ export class JobEditComponent implements OnInit {
 
   job: Job = {}
   jobForm: FormGroup
-  taskList: FormArray  
+  taskList: FormArray
   numberPattern = /^[0-9]*$/
-  
+
   jobsDependence: Job[] = [{}]
   active: RadioOption[] = [
     {label: "Ativo", value: true},
@@ -28,8 +28,8 @@ export class JobEditComponent implements OnInit {
   ]
 
   completed: RadioOption[] = [
-    {label: "Ativo", value: true},
-    {label: "Inativo", value: false}
+    {label: "Sim", value: true},
+    {label: "Não", value: false}
   ]
 
 
@@ -67,7 +67,7 @@ export class JobEditComponent implements OnInit {
       })
     })
   };
-  
+
   updateJob(job: Job) {
     this.jobService.updateJob(job).subscribe(response => {
       if(response.statusText==="OK"){
@@ -75,8 +75,8 @@ export class JobEditComponent implements OnInit {
       }
     })
   };
-  
-  
+
+
 
   createTask(): FormGroup {
     return this.formBuilder.group({
