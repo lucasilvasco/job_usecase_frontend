@@ -10,14 +10,40 @@ export class JobService {
 
     constructor(private http: Http){}
 
-    jobs(): Observable<Job[]> {
-        return this.http.get(`http://localhost:8080/jobs`)
+    getAllJobs(search?: string): Observable<Job[]> {
+        return this.http.get(`http://localhost:8080/jobs`, {params: {q: search}})
         .map(response => response.json())
     }
 
-    delete(id: number):Observable<any> {
+    getJobById(id: number): Observable<Job> {
+        return this.http.get(`http://localhost:8080/jobs/${id}`)
+        .map(response => response.json())
+    }
+
+    removeJobById(id: number):Observable<any> {
         let body = JSON.stringify({"id": id});
         let options = new RequestOptions({body : body, headers: new Headers({'Content-Type': 'application/json'})});
         return this.http.delete(`http://localhost:8080/jobs`, options)
+    }
+
+    createJob(job: Job): Observable<any>{
+        let jobToCreate = job
+        if(jobToCreate.parentJob===""){
+            jobToCreate.parentJob = {}
+        }
+        let body = JSON.stringify(jobToCreate);
+        let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json'})});
+        return this.http.post(`http://localhost:8080/jobs`, body, options)
+    }
+
+    updateJob(job: Job): Observable<any> {
+        let jobToCreate = job
+        if(jobToCreate.parentJob==="" || jobToCreate.parentJob.id===undefined){
+            jobToCreate.parentJob = null
+        }
+        console.log(jobToCreate)
+        let body = JSON.stringify(jobToCreate);
+        let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json'})});
+        return this.http.put(`http://localhost:8080/jobs`, body, options)
     }
 }

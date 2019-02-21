@@ -2,8 +2,7 @@
     <div class="box-header with-border text-center">
       <h3 class="box-title"><b>{{job.name}}</b></h3>
       <div class="box-tools pull-right">
-
-        <a class="btn btn-sm danger"><i class="fa fa-edit"></i></a>
+        <a class="btn btn-sm danger" [routerLink]="['/editjob', job.id]"><i class="fa fa-edit"></i></a>
         <a (click)="emitRemoveJob(job.id)"class="btn btn-sm danger"><i class="fa fa-remove"></i></a>
       </div>
     </div>
@@ -22,7 +21,8 @@
     <div *ngFor="let task of job.tasks" class="box-body">
       <p><b>Nome: </b>{{task.name}}</p>
       <p><b>Peso: </b>{{task.weight}}</p>
-      <p><b>Completo: </b>{{task.completed}}</p>
+      <p *ngIf="task.completed"><b>Completo: </b>Sim</p>
+      <p *ngIf="!task.completed"><b>Completo: </b>Não</p>
       <p><b>Criado em: </b>{{task.createdAt}}</p>
     </div>
   </div>
