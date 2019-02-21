@@ -29,7 +29,6 @@ export class JobsComponent implements OnInit {
       .switchMap(searchTerm =>
           this.jobService.getAllJobs(searchTerm))
       .subscribe(jobs => {
-        console.log(this.jobs)
         this.jobs = jobs
       })
 
